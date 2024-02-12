@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CEFACD93-8F2A-409C-B9DC-76A93320A5F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShippingProvision.Business</RootNamespace>
+    <AssemblyName>ShippingProvision.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\Lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Business\BaseBO.cs" />
+    <Compile Include="Business\BOFactory.cs" />
+    <Compile Include="Business\ClientMasterBO.cs" />
+    <Compile Include="Business\CategoryBO.cs" />
+    <Compile Include="Business\ClientRfqBO.cs" />
+    <Compile Include="Business\SupplierCategoryMapBO.cs" />
+    <Compile Include="Business\HistoryOrderBO.cs" />
+    <Compile Include="Business\PurchaseOrderBO.cs" />
+    <Compile Include="Business\SalesOrderBO.cs" />
+    <Compile Include="Business\SODocumentBO.cs" />
+    <Compile Include="Business\StockItemHistoryBO.cs" />
+    <Compile Include="Business\SupplierRfqBO.cs" />
+    <Compile Include="Business\QuotationBO.cs" />
+    <Compile Include="Business\ItemSupplierMapBO.cs" />
+    <Compile Include="Business\SupplierMasterBO.cs" />
+    <Compile Include="Business\CompanyBO.cs" />
+    <Compile Include="Business\VesselMasterBO.cs" />
+    <Compile Include="Business\ItemMasterBO.cs" />
+    <Compile Include="Business\StockMasterBO.cs" />
+    <Compile Include="Business\SecurityBO.cs" />
+    <Compile Include="Business\SessionFactoryProvider.cs" />
+    <Compile Include="Business\UserBO.cs" />
+    <Compile Include="Common\MailData.cs" />
+    <Compile Include="Common\Enum.cs" />
+    <Compile Include="Entity\Checklist\Checklist.cs" />
+    <Compile Include="Entity\Checklist\ChecklistLine.cs" />
+    <Compile Include="Entity\ClientMaster\ClientMaster.cs" />
+    <Compile Include="Entity\ClientMaster\ClientMasterMap.cs" />
+    <Compile Include="Entity\Category\Category.cs" />
+    <Compile Include="Entity\Category\CategoryMap.cs" />
+    <Compile Include="Entity\ClientRFQ\ClientRfq.cs" />
+    <Compile Include="Entity\ClientRFQ\ClientRfqLine.cs" />
+    <Compile Include="Entity\ClientRFQ\ClientRfqLineMap.cs" />
+    <Compile Include="Entity\ClientRFQ\ClientRfqMap.cs" />
+    <Compile Include="Entity\SupplierCategoryMap\SupplierCategoryMap.cs" />
+    <Compile Include="Entity\SupplierCategoryMap\SupplierCategoryMapMap.cs" />
+    <Compile Include="Entity\DeliveryOrder\DeliveryOrder.cs" />
+    <Compile Include="Entity\DeliveryOrder\DeliveryOrderLine.cs" />
+    <Compile Include="Entity\Invoice\InvoiceLine.cs" />
+    <Compile Include="Entity\Invoice\Invoice.cs" />
+    <Compile Include="Entity\OperationSheet\OperationSheet.cs" />
+    <Compile Include="Entity\OperationSheet\OperationSheetLine.cs" />
+    <Compile Include="Entity\PurchaseOrder\PurchaseOrder.cs" />
+    <Compile Include="Entity\PurchaseOrder\PurchaseOrderLine.cs" />
+    <Compile Include="Entity\PurchaseOrder\PurchaseOrderLineMap.cs" />
+    <Compile Include="Entity\PurchaseOrder\PurchaseOrderMap.cs" />
+    <Compile Include="Entity\SalesOrder\SalesOrder.cs" />
+    <Compile Include="Entity\SalesOrder\SalesOrderLine.cs" />
+    <Compile Include="Entity\SalesOrder\SalesOrderLineMap.cs" />
+    <Compile Include="Entity\SalesOrder\SalesOrderMap.cs" />
+    <Compile Include="Entity\ItemSupplierMap\ItemSupplierMap.cs" />
+    <Compile Include="Entity\ItemSupplierMap\ItemSupplierMapMap.cs" />
+    <Compile Include="Entity\Quotation\QuotationLineMap.cs" />
+    <Compile Include="Entity\Quotation\QuotationMap.cs" />
+    <Compile Include="Entity\Quotation\QuotationLine.cs" />
+    <Compile Include="Entity\Quotation\Quotation.cs" />
+    <Compile Include="Entity\StockItemHistory\StockItemHistory.cs" />
+    <Compile Include="Entity\StockItemHistory\StockItemHistoryMap.cs" />
+    <Compile Include="Entity\SupplierMaster\SupplierMaster.cs" />
+    <Compile Include="Entity\SupplierMaster\SupplierMasterMap.cs" />
+    <Compile Include="Entity\SupplierRFQ\SupplierRfqLineMap.cs" />
+    <Compile Include="Entity\SupplierRFQ\SupplierRfqLine.cs" />
+    <Compile Include="Entity\SupplierRFQ\SupplierRfq.cs" />
+    <Compile Include="Entity\SupplierRFQ\SupplierRfqMap.cs" />
+    <Compile Include="Entity\Company\Company.cs" />
+    <Compile Include="Entity\Company\CompanyMap.cs" />
+    <Compile Include="Entity\User\DocumentPrint.cs" />
+    <Compile Include="Entity\Common\OptionItem.cs" />
+    <Compile Include="Entity\VesselMaster\VesselMaster.cs" />
+    <Compile Include="Entity\VesselMaster\VesselMasterMap.cs" />
+    <Compile Include="Entity\ItemMaster\ItemMaster.cs" />
+    <Compile Include="Entity\ItemMaster\ItemMasterMap.cs" />
+    <Compile Include="Entity\StockMaster\StockMaster.cs" />
+    <Compile Include="Entity\StockMaster\StockMasterMap.cs" />
+    <Compile Include="Entity\Security\AuthToken.cs" />
+    <Compile Include="Entity\User\UserMap.cs" />
+    <Compile Include="Entity\User\User.cs" />
+    <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="Helpers\BOHelper.cs" />
+    <Compile Include="Helpers\QueryableExtn.cs" />
+    <Compile Include="Helpers\SessionContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ListResponseVM.cs" />
+    <Compile Include="ViewModels\ListRequestVM.cs" />
+    <Compile Include="ViewModels\StockItemHistoryLog.cs" />
+    <Compile Include="ViewModels\StockMasterRow.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ShippingProvision.Services\ShippingProvision.Services.csproj">
+      <Project>{5CAE10EC-A6C1-46A2-AF7A-D0F45E33AA83}</Project>
+      <Name>ShippingProvision.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

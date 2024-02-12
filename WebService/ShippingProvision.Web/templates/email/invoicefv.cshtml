@@ -1,0 +1,8 @@
+@model dynamic
+
+Hi @Model.Document.Recipient,
+
+	Please find the attached Invoice.
+
+Thanks,
+@Include("~/templates/email/userinfo.cshtml")

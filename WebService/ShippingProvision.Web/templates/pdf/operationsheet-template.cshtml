@@ -1,0 +1,106 @@
+@model dynamic
+
+<html>
+<head>
+     @Include("~/templates/pdf/print-style.css")	 
+</head>
+<body>	
+	@Include("~/templates/pdf/header-template.cshtml")
+	
+  <table class="tbl-class header-margin" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+            <td colspan="6" class="td-content">
+				<div>
+					<h2>@Model.OperationSheet.VesselCode</h2>
+				</div>
+            </td>
+        </tr>
+	</table>
+	
+	<table class="tbl-class" border="0">
+		<tr border="0">
+            <td class="content-left headerlbl">
+                VESSEL NAME:
+            </td>
+            <td class="content-left headervalue">
+                <b>@Model.OperationSheet.VesselName</b>
+            </td>
+            <td class="content-left headerlbl">
+                PLANNED SUPPLY:
+            </td>
+            <td class="content-left headervalue">
+				@if (@Model.OperationSheet.EstimatedDeliveryDate != null)
+				{
+					<b>@Model.OperationSheet.EstimatedDeliveryDate.ToString("dd-MMM-yyyy")</b>
+				}                
+            </td>
+        </tr>
+        <tr border="0">
+            <td class="content-left headerlbl">
+                CLIENT:
+            </td>
+            <td class="content-left headervalue">
+                <b>@Model.OperationSheet.ClientName</b>
+            </td>
+            <td class="content-left headerlbl">
+                PO NO:
+            </td>
+            <td colspan="6" class="content-left headervalue">				
+                <b>@Model.OperationSheet.PurcharseOrderIdentifier</b>
+            </td>
+        </tr>
+        <tr border="0">
+            <td class="content-left headerlbl">
+                NO OF VENDORS:
+            </td>
+            <td class="content-left headervalue">
+                <b>@Model.OperationSheet.VendorCount</b>
+            </td>
+            <td class="content-left headerlbl">
+                PURCHASER:
+            </td>
+            <td colspan="6" class="content-left headervalue"> 
+                <b>@Model.OperationSheet.ClientName</b>
+            </td>
+        </tr>
+    </table>	               
+
+     <table class="tbl-class content-margin repeat-header tbl-lines" border="0" cellpadding="10" cellspacing="1">
+        <thead>
+			<tr>
+				<th class="content-center td-content">
+					<b>S.NO</b>
+				</th>
+				<th class="content-center td-content">
+					<b>SUPPLIER</b>
+				</th>
+				<th class="content-center td-content">
+					<b>ITEMS</b>
+				</th>
+				<th class="content-center td-content">
+					<b>DELIVERY</b>
+				</th>			
+			</tr>
+		</thead>
+        <tbody>
+            @foreach (var item in Model.OperationSheet.Lines)
+            {                        
+                <tr>
+					<td class="td-content">
+						@item.SNo
+					</td>
+					<td class="td-content content-left">
+						@item.SupplierName
+					</td>
+					<td class="td-content">
+						@item.LineCount
+					</td>
+					<td class="td-content content-left">
+						@item.DeliveryInstruction
+					</td>					
+				</tr>			
+            }
+        </tbody>
+    </table>   
+</body>
+</html>

@@ -1,0 +1,288 @@
+@model dynamic
+
+<html>
+<head>
+    @Include("~/templates/pdf/print-style.css")
+    <style>
+        .tbl-class-footer {
+            text-align: left;
+            font-family: Arial;
+            width: 650px;
+        }
+
+        .sign-area1 {
+            font-size: 12pt;
+            margin-top: 80px;
+            margin-bottom: 40px;
+        }
+
+        .customer-code {
+            font-size: 14pt;
+            padding-top: 10px;
+        }
+
+        .billingaddress {
+            white-space: pre-wrap;
+            padding-top: 8px;
+            line-height: 40px;
+        }
+
+        .header1 {
+            width: 40%;
+        }
+
+        .header2 {
+            width: 60%;
+        }
+    </style>
+</head>
+<body>
+    @Include("~/templates/pdf/header-template.cshtml")
+
+
+    <table class="tbl-class header-margin" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+            <td style="width:50%;text-align:left">
+                <div>
+                    <h2>TAX INVOICE</h2>
+                </div>
+            </td>
+            <td style="width:50%;text-align:right">
+                    <img src="http://eta.shippingprovision.com/templates/pdf/images/cert-2.png" width="87px" height="50px" alt="Awards" />
+                    <img src="http://eta.shippingprovision.com/templates/pdf/images/cert-3.png" width="100px" height="50px" alt="Awards" />
+            </td>
+        </tr>
+    </table>
+    <table class="tbl-class" border="0">
+        <tr>
+            <td class="td-content header1">
+                <table class="tbl-header">
+                    <tr>
+                        <td class="content-top headerlbl">
+                            BILL TO :
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-left headervalue">
+                            @if (@Model.Invoice.PayType == "Cash")
+                            {
+                                <b>MASTER OF THE VESSEL</b>
+                            }
+                            else
+                            {
+                                <b>@Model.Invoice.ClientName</b><br />
+                                <div class="billingaddress">@Model.Invoice.ClientBillingAddress</div>
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td class="td-content header2">
+                <table class="tbl-header">
+                    <tr>
+                        <td class="content-right headerlbl">
+                            VESSEL NAME:
+                        </td>
+                        <td class="content-left headervalue">
+                            <b>@Model.Invoice.VesselName</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right headerlbl">
+                            INVOICE NO:
+                        </td>
+                        <td class="content-left headervalue">
+                            <b>@Model.Invoice.InvoiceIdentifier</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right headerlbl">
+                            INVOICE DATE:
+                        </td>
+                        <td class="content-left headervalue">
+                            @if (@Model.Invoice.InvoiceDate != null)
+                            {
+                                <b>@Model.Invoice.InvoiceDate.ToString("dd-MMM-yyyy")</b>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right headerlbl">
+                            DO NO:
+                        </td>
+                        <td class="content-left headervalue">
+                            <b>@Model.Invoice.DeliveryIdentifier </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right headerlbl">
+                            YOUR PO NO:
+                        </td>
+                        <td class="content-left headervalue">
+                            <b>@Model.Invoice.PurcharseOrderIdentifier</b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right headerlbl">
+                            DEPARTMENT:
+                        </td>
+                        <td class="content-left headervalue">
+                            <b>@Model.Invoice.ProvisionType </b>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="content-right customer-code">
+                            <b>Customer Code:</b>
+                        </td>
+                        <td class="content-left customer-code">
+                            <b>@Model.Invoice.VesselCode </b>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+
+    <!-- Empty content-->
+    <table class="tbl-class-empty">
+        <tr>
+            <td>
+                <table style="text-align: center;">
+                    <tr>
+                        <td style="text-align: center;">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+    <table class="tbl-class content-margin repeat-header tbl-lines" border="0" cellpadding="10" cellspacing="1">
+        <thead>
+            <tr>
+                <th class="content-center td-content">
+                    <b>S.NO</b>
+                </th>
+                <th class="content-center td-content">
+                    <b>DESCRIPTION</b>
+                </th>
+                <th class="content-center td-content">
+                    <b>UNIT</b>
+                </th>
+                <th class="content-center td-content">
+                    <b>QUANTITY</b>
+                </th>
+                <th class="content-center td-content">
+                    <b>PRICE</b>
+                </th>
+                <th class="content-center td-content">
+                    <b>TOTAL</b>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Invoice.PmInvoiceLines)
+            {
+                <tr>
+                    <td class="td-content">
+                        @item.SNo
+                    </td>
+                    <td class="td-content content-left">
+                        @item.Description&nbsp;@item.Remarks
+                    </td>
+                    <td class="td-content">
+                        @item.Unit
+                    </td>
+                    <td class="td-content content-right">
+                        @item.Quantity.ToString("0.00")
+                    </td>
+                    <td class="td-content content-right">
+                        @item.UnitSellingPrice.ToString("0.00")
+                    </td>
+                    <td class="td-content content-right">
+                        @item.SellingPrice.ToString("0.00")
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <table class="tbl-class tbl-footer" border="0" cellpadding="8" cellspacing="1">
+        <tr>
+            <td colspan="10" class="content-right footer-lbl">
+                Total in SGD
+            </td>
+            <td colspan="2" class="content-right footer-value">
+                <b>@Model.Invoice.InitialTotal.ToString("0.00")</b>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10" class="content-right footer-lbl">
+                Discount <b>@Model.Invoice.TotalDiscount.ToString("0.00")</b>%
+            </td>
+            <td colspan="2" class="content-right footer-value">
+                <b>@Model.Invoice.DiscountAmount.ToString("0.00")</b>
+            </td>
+        </tr>
+        @if (@Model.Invoice.GSTZeroRated)
+        {
+            <tr>
+                <td colspan="10" class="content-right footer-lbl">
+                    GST ZERO RATED <b>0.00</b>%
+                </td>
+                <td colspan="2" class="content-right footer-value">
+                    <b>0.00</b>
+                </td>
+            </tr>
+        }
+        @if (@Model.Invoice.IncludeGST)
+        {
+            <tr>
+                <td colspan="10" class="content-right footer-lbl">
+                    GST <b>@Model.Invoice.GST.ToString("0.00")</b>%
+                </td>
+                <td colspan="2" class="content-right footer-value">
+                    <b>@Model.Invoice.GSTAmount.ToString("0.00")</b>
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="10" class="content-right footer-lbl">
+                Grand Total in SGD
+            </td>
+            <td colspan="2" class="content-right footer-value">
+                <b>@Model.Invoice.TotalAmount.ToString("0.00")</b>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="12" class="content-right footer-lbl">
+                @Model.Invoice.TotalAmountInWords
+            </td>
+        </tr>
+    </table>
+
+    <table class="tbl-class-footer sign-area1" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+            <td>
+                Received in good order and condition
+            </td>
+            <td>
+                For and behalf of ship owner
+            </td>
+        </tr>
+    </table>
+
+    <table class="tbl-class-footer" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+            <td>
+                __________________________
+            </td>
+            <td>
+                __________________________
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿@model dynamic
+
+<html>
+<head>
+     @Include("~/templates/pdf/print-style.css")
+</head>
+<body>
+    @Include("~/templates/pdf/header-template.cshtml")
+
+	<table class="tbl-class header-margin" border="0" cellpadding="1" cellspacing="1">
+        <tr>
+            <td colspan="6" class="td-content">
+				<div>
+					<h2>Request For Quotation</h2>
+				</div>
+            </td>
+        </tr>
+	</table>
+	
+	<table class="tbl-class tbl-header" border="0" cellpadding="7" cellspacing="1">
+        <tr>
+            <td class="content-left headerlbl"> Date:</td>	
+            <td colspan="5" class="content-left headervalue"> 
+				@if(@Model.Header.ModifiedDate != null )
+				{
+					<b>@Model.Header.ModifiedDate.ToString("dd-MMM-yyyy")</b>
+				}
+			</td>
+        </tr>
+        <tr>
+            <td class="content-left headerlbl"> Supplier: </td>
+            <td colspan="5" class="content-left headervalue"> <b>@Model.Header.SupplierName</b> </td>
+        </tr>      
+        <tr>
+            <td class="content-left headerlbl"> Item Count: </td>
+            <td colspan="5" class="content-left headervalue"> <b> @Model.Items.Count</b> </td>
+        </tr>
+		<tr>
+            <td class="content-left headerlbl"> REF: </td>
+            <td colspan="5" class="content-left headervalue"> <b> @Model.Header.QuoteIdentifier </b> </td>
+        </tr>
+        <tr>
+            <td class="content-left headerlbl"> Remarks: </td>
+            <td colspan="5" class="content-left headervalue"> <b> @Model.Header.Remarks</b> </td>
+        </tr>
+	</table>
+		
+    <table class="tbl-class content-margin repeat-header tbl-lines" border="0" cellpadding="10" cellspacing="1">
+        <thead>
+			<tr>
+				<th class="content-center td-content">
+					<b>S.NO</b>
+				</th>
+				<th class="content-center td-content">
+					<b>DESCRIPTION</b>
+				</th>
+				<th class="content-center td-content">
+					<b>UNIT</b>
+				</th>
+				<th class="content-center td-content">
+					<b>QUANTITY</b>
+				</th>
+				<th class="content-center td-content">
+					<b>BUYING</b>
+				</th>
+				<th class="content-center td-content">
+					<b>REMARKS</b>
+				</th>
+			</tr>
+		</thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td class="td-content">
+                        @item.SNo
+                    </td>
+                    <td class="td-content content-left">
+                        @item.Description
+                    </td>
+                    <td class="td-content">
+                        @item.Unit
+                    </td>
+                    <td class="td-content content-right">
+                        	@item.Quantity.ToString("0.00")
+					</td>
+                    <td class="td-content content-right">
+                    		@item.BuyingPrice.ToString("0.00")
+					</td>
+                    <td class="td-content content-left">
+                        @item.Remarks
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+	
+	@Include("~/templates/pdf/userinfo-template.cshtml")
+</body>
+</html>

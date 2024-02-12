@@ -1,0 +1,94 @@
+﻿<style>
+.content-left {
+    text-align:left;
+}
+.content-right {
+    text-align:right;
+}
+.content-center {
+    text-align:center;
+}
+.content-top {
+    text-align:top;
+}
+.div-label {
+	font-family: Arial; 
+	font-size: 10pt;
+	float : left;
+	width : 10%;
+}
+.div-value {
+	font-family: Arial; 
+	font-size: 10pt;
+	float : left;
+	width : 90%;
+}
+.div-userinfo {
+	font-family: Arial; 
+	font-size: 10pt;
+	float : left;
+	width : 100%;
+}
+
+.td-content {
+	border-style: solid;
+	border-color : lightgray;
+	border-width: 0.1px;
+	height:20px;	
+}
+.tbl-class {
+	text-align: center; font-family: Arial; font-size: 10pt; width: 650px;
+}
+.tbl-class-empty {
+	text-align: center; font-family: Arial; font-size: 10pt; width: 650px;height:20px;
+}
+.header-margin {
+	margin-top:30px; margin-bottom: 10px;
+}
+.content-margin {
+	margin-bottom: 10px;
+}
+.repeat-header {
+	repeat-header:yes;
+}
+
+
+.tbl-font
+{
+	font-family: Arial; font-size: 10pt;
+}
+.tbl-header
+{
+	font-family: Arial !important; 
+	font-size: 10pt !important;
+}
+.tbl-lines
+{
+	font-family: Arial !important; 
+	font-size: 10pt !important;
+}
+.tbl-footer
+{
+	font-family: Arial !important; 
+	font-size: 12pt !important;
+}
+.headerlbl
+{
+	padding-top : 10px;
+}
+.headervalue
+{
+	padding-top : 10px;		
+}
+.footer-lbl
+ {
+	padding-top : 10px;	
+	font-family: Arial !important; 
+	font-size: 12pt !important;
+}
+.footer-value {
+	padding-top : 10px;	
+	font-family: Arial !important; 
+	font-size: 12pt !important;
+}
+</style>
